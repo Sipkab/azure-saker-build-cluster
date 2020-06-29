@@ -10,19 +10,36 @@ strategy:
   matrix:
     win1:
       imageName: 'windows-latest'
+      clusterName: 'win1'
     win2:
       imageName: 'windows-latest'
+      clusterName: 'win2'
     win3:
       imageName: 'windows-latest'
+      clusterName: 'win3'
     win4:
       imageName: 'windows-latest'
+      clusterName: 'win4'
     win5:
       imageName: 'windows-latest'
+      clusterName: 'win5'
 
 
 pool:
   vmImage: $(imageName)
 
 steps:
+- script: |
+    mkdir testbuild
+    cd testbuild
+    jar xf ../msvc-cluster-realistic-1000.zip
+    java -jar ../saker.build.jar -bd build -trace pwd://build/build.trace
+  displayName: 'Test build'
+- task: PublishBuildArtifacts@1
+  condition: always()
+  displayName: 'Publish test build trace'
+  inputs:
+    pathtoPublish: testbuild/build/build_export.trace
+    artifactName: 'test_build_$(clusterName)'
 - script: java -jar saker.build.jar daemon run -cluster-enable -connect-client 34.73.226.46 -cmirrord cmirror
   displayName: 'Run a cluster agent'
