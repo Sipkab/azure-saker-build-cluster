@@ -39,7 +39,7 @@ steps:
   condition: always()
   displayName: 'Publish test build trace'
   inputs:
-    pathtoPublish: testbuild/build/build_export.trace
+    pathtoPublish: testbuild/build/build.trace
     artifactName: 'test_build_$(clusterName)'
 - script: java -jar saker.build.jar daemon run -cluster-enable -connect-client 34.73.226.46 -cmirrord cmirror
   displayName: 'Run a cluster agent'
