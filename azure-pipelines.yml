@@ -1,0 +1,28 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+strategy:
+  matrix:
+    win1:
+      imageName: 'windows-latest'
+    win2:
+      imageName: 'windows-latest'
+    win3:
+      imageName: 'windows-latest'
+    win4:
+      imageName: 'windows-latest'
+    win5:
+      imageName: 'windows-latest'
+
+
+pool:
+  vmImage: $(imageName)
+
+steps:
+- script: java -jar saker.build.jar daemon run -cluster-enable -connect-client 34.73.226.46 -cmirrord cmirror
+  displayName: 'Run a cluster agent'
