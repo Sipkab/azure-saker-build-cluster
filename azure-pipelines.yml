@@ -29,17 +29,5 @@ pool:
   vmImage: $(imageName)
 
 steps:
-- script: |
-    mkdir testbuild
-    cd testbuild
-    jar xf ../msvc-cluster-realistic-1000.zip
-    java -jar ../saker.build.jar -bd build -trace pwd://build/build.trace
-  displayName: 'Test build'
-- task: PublishBuildArtifacts@1
-  condition: always()
-  displayName: 'Publish test build trace'
-  inputs:
-    pathtoPublish: testbuild/build/build.trace
-    artifactName: 'test_build_$(clusterName)'
 - script: java -jar saker.build.jar daemon run -cluster-enable -connect-client 34.73.226.46 -cmirrord cmirror
   displayName: 'Run a cluster agent'
