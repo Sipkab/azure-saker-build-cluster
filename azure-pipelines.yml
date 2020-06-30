@@ -29,5 +29,5 @@ pool:
   vmImage: $(imageName)
 
 steps:
-- script: java -jar saker.build.jar daemon run -cluster-enable -connect-client 34.73.226.46 -cmirrord cmirror
+- script: java -Dsaker.build.rmi.statistics.collect=true -jar saker.build.jar daemon run -cluster-enable -connect-client 34.73.226.46 -cmirrord cmirror
   displayName: 'Run a cluster agent'
