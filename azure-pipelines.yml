@@ -14,6 +14,15 @@ strategy:
     win2:
       imageName: 'windows-latest'
       clusterName: 'win2'
+    win3:
+      imageName: 'windows-latest'
+      clusterName: 'win3'
+    win4:
+      imageName: 'windows-latest'
+      clusterName: 'win4'
+    win5:
+      imageName: 'windows-latest'
+      clusterName: 'win5'
 
 
 
